@@ -20,7 +20,14 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: linear-gradient(to bottom right, #fce7f3, #ffffff, #d1fae5);
+            background: linear-gradient(to bottom, 
+                #fce7f3 0%,           /* Pink top */
+                #fce7f3 25%,          /* Pink */
+                #fef1f8 40%,          /* Light pink */
+                #f0fdf4 60%,          /* Light green */
+                #d1fae5 75%,          /* Green */
+                #d1fae5 100%          /* Green bottom */
+            );
             min-height: 100vh;
         }
 
@@ -117,6 +124,12 @@
             background: linear-gradient(135deg, #ec4899 0%, #6ee7b7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        nav .logo:hover {
+            opacity: 0.8;
         }
 
         nav ul {
@@ -383,7 +396,6 @@
         /* Skills Section */
         .skills {
             padding: 6rem 0;
-            background: linear-gradient(to bottom, rgba(252, 231, 243, 0) 0%, rgba(252, 231, 243, 0.3) 20%, rgba(252, 231, 243, 0.6) 40%, rgba(252, 231, 243, 1) 60%);
         }
 
         /* Cursor Follower */
@@ -448,7 +460,6 @@
         /* About Section */
         .about {
             padding: 6rem 0;
-            background: linear-gradient(to bottom, rgba(252, 231, 243, 1) 0%, rgba(252, 231, 243, 0.8) 30%, rgba(209, 250, 229, 0.3) 70%, transparent 100%);
         }
 
         .about-content {
@@ -482,7 +493,203 @@
         /* Contact Section */
         .contact {
             padding: 6rem 0;
-            background: linear-gradient(to top, #d1fae5, transparent);
+        }
+
+        /* Creative Projects Section */
+        .creative-projects {
+            padding: 4rem 0;
+        }
+
+        .carousel-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 4rem;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            perspective: 1000px;
+            height: 400px;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center center;
+        }
+
+        .carousel-slide:nth-child(1) {
+            z-index: 3;
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+
+        .carousel-slide:nth-child(2) {
+            z-index: 2;
+            transform: translateX(60%) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .carousel-slide:nth-child(3) {
+            z-index: 1;
+            transform: translateX(-60%) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .carousel-slide.center {
+            z-index: 3;
+            transform: translateX(0) scale(1);
+            opacity: 1;
+        }
+
+        .carousel-slide.right {
+            z-index: 2;
+            transform: translateX(60%) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .carousel-slide.left {
+            z-index: 1;
+            transform: translateX(-60%) scale(0.85);
+            opacity: 0.6;
+        }
+
+        .creative-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .creative-image {
+            width: 100%;
+            flex: 1;
+            background: linear-gradient(135deg, #fce7f3 0%, #d1fae5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .creative-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .creative-info {
+            padding: 1.5rem;
+            text-align: center;
+            background: white;
+        }
+
+        .creative-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .creative-info p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: none;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background: #fce7f3;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 6px 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .carousel-button.prev {
+            left: 0;
+        }
+
+        .carousel-button.next {
+            right: 0;
+        }
+
+        .carousel-button svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #ec4899;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .carousel-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background: #d1d5db;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0;
+        }
+
+        .carousel-dot.active {
+            background: #ec4899;
+            width: 2rem;
+            border-radius: 1rem;
+        }
+
+        .carousel-dot:hover {
+            background: #f9a8d4;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0 3rem;
+            }
+
+            .carousel-wrapper {
+                height: 350px;
+            }
+
+            .carousel-slide.right {
+                transform: translateX(40%) scale(0.8);
+            }
+
+            .carousel-slide.left {
+                transform: translateX(-40%) scale(0.8);
+            }
         }
 
         .contact-content {
@@ -523,7 +730,6 @@
         /* Footer */
         footer {
             padding: 3rem 0;
-            border-top: 1px solid #fce7f3;
             text-align: center;
             color: #6b7280;
         }
@@ -568,10 +774,11 @@
             opacity: 0.2;
             pointer-events: none;
             animation: float 6s ease-in-out infinite;
+            z-index: 50;
         }
 
         .pixel-cat.top-right {
-            top: 2rem;
+            top: 5rem;
             right: 2rem;
             animation-delay: 0s;
         }
@@ -590,10 +797,11 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Jazmin Pacheco</div>
+            <a href="#" class="logo">Jazmin Pacheco</a>
             <ul>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#creative">Creative</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -771,6 +979,83 @@
         </div>
     </section>
 
+    <!-- Creative Projects Section -->
+    <section id="creative" class="creative-projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="font-display gradient-text">Creative Projects</h2>
+                <p>Pixel-perfect in every medium 🧶✨</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <button class="carousel-button prev" onclick="moveCarousel(-1)" aria-label="Previous">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Slide 1 -->
+                        <div class="carousel-slide">
+                            <div class="creative-card stitched-border">
+                                <div class="creative-image crosshatch-bg">
+                                    🧵
+                                    <!-- Replace with: <img src="crochet1.jpg" alt="Crochet project"> -->
+                                </div>
+                                <div class="creative-info">
+                                    <h3 class="font-display">Cozy Crochet Blanket</h3>
+                                    <p>Hand-crocheted blanket with custom color palette. Taught me patience and precision—one stitch at a time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="creative-card stitched-border">
+                                <div class="creative-image crosshatch-bg">
+                                    🪡
+                                    <!-- Replace with: <img src="crossstitch1.jpg" alt="Cross-stitch project"> -->
+                                </div>
+                                <div class="creative-info">
+                                    <h3 class="font-display">Pixel Art Cross-Stitch</h3>
+                                    <p>Custom gaming-themed cross-stitch pattern. Basically physical pixel art with a needle!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="carousel-slide">
+                            <div class="creative-card stitched-border">
+                                <div class="creative-image crosshatch-bg">
+                                    🎀
+                                    <!-- Replace with: <img src="craft1.jpg" alt="Craft project"> -->
+                                </div>
+                                <div class="creative-info">
+                                    <h3 class="font-display">Amigurumi Cat</h3>
+                                    <p>Crocheted plushie inspired by my own cats. Every detail matters, from code to crochet!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-button next" onclick="moveCarousel(1)" aria-label="Next">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-dots">
+                    <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -852,6 +1137,80 @@
         }
         
         animateCursor();
+
+        // Carousel functionality - Netflix style
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let autoplayInterval;
+
+        function updateCarousel() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            slides.forEach((slide, index) => {
+                slide.classList.remove('center', 'left', 'right');
+                
+                if (index === currentSlide) {
+                    slide.classList.add('center');
+                } else if (index === (currentSlide + 1) % totalSlides) {
+                    slide.classList.add('right');
+                } else {
+                    slide.classList.add('left');
+                }
+            });
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function moveCarousel(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+            
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoplay();
+        }
+
+        function autoplay() {
+            moveCarousel(1);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            autoplayInterval = setInterval(autoplay, 4000); // Change slide every 4 seconds
+        }
+
+        // Initialize carousel
+        updateCarousel();
+
+        // Start autoplay
+        resetAutoplay();
+
+        // Pause on hover
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        carouselWrapper.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+        carouselWrapper.addEventListener('mouseleave', () => {
+            resetAutoplay();
+        });
     </script>
 </body>
 </html>
