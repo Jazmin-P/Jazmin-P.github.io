@@ -415,22 +415,25 @@ nav a:hover {
     backdrop-filter: blur(4px);
 }
 
-/* --- 1. THE BUTTON & HERO STITCH (The "Tight" Look) --- */
-/* We target this specifically so it doesn't use the modal's offset */
-.contact-btn.stitched-border::before,
-.project-card.stitched-border::before,
-.hero-text .stitched-border::before {
+/* This rule now forces EVERY stitched-border to be Pink and Inset */
+.stitched-border::before {
     content: '';
     position: absolute;
-    inset: -2px; /* This keeps it tight to the button */
-    border: 2px dashed currentColor;
+    /* 1. Use 12px to move it INSIDE for everything */
+    inset: -2px; 
+    /* 2. Use the HEX code so it's ALWAYS Pink, never Gray */
+    border: 2px dashed #ec4899; 
     border-radius: inherit;
-    opacity: 0.3;
+    opacity: 0.4;
     pointer-events: none;
-    z-index: 1;
-    /* Reset any outline/border from the modal logic */
-    outline: none;
+    z-index: 10;
 }
+
+/* EXCEPTIONS: We only keep the -2px look for the tiny buttons */
+.carousel-container .stitched-border::before {
+    inset: 1px;
+}
+    
 
 /* 2. THE MODAL CONTAINER */
 .project-modal-content {
@@ -462,10 +465,6 @@ nav a:hover {
 /* 3. REMOVE the old glitchy stitch from the modal */
 .project-modal-content.stitched-border::before {
     display: none !important;
-}
-
-.project-modal-content::-webkit-scrollbar {
-    display: none;
 }
 
 .project-modal-close {
