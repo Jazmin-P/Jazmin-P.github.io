@@ -238,11 +238,12 @@ function openProjectModal(projectId) {
         modalDemoLink.style.display = 'inline-block';
         modalDemoLink.onclick = () => {
             modalBody.innerHTML = `
-                <video controls autoplay style="width: 100%; border-radius: 1rem; margin-bottom: 1rem;">
-                    <source src="${project.videoUrl}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                ${project.longDesc} 
+                <div style="width: 100%; overflow: hidden;">
+                    <video controls autoplay style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
+                        <source src="${project.videoUrl}" type="video/mp4">
+                    </video>
+                    <p>${project.longDesc}</p>
+                </div>
             `;
             modalDemoLink.style.display = 'none'; // Hide button once playing
         };
