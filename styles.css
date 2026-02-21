@@ -73,12 +73,16 @@ body {
     
     content: '';
     position: absolute;
-    inset: -2px; 
     border: 2px dashed #16a56c; /* Pink dash */
-    border-radius: inherit;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 2px dashed #ec4899; /* Pink to match your theme */
+    border-radius: 1rem;
     opacity: 0.3;
     pointer-events: none;
-    z-index: 1;
+    z-index: 10;
 }
 
 .crosshatch-bg {
@@ -411,24 +415,55 @@ nav a:hover {
     backdrop-filter: blur(4px);
 }
 
-/* The Modal Container - No Scrollbars */
+/* --- 1. THE BUTTON & HERO STITCH (The "Tight" Look) --- */
+/* We target this specifically so it doesn't use the modal's offset */
+.contact-btn.stitched-border::before,
+.project-card.stitched-border::before,
+.hero-text .stitched-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px; /* This keeps it tight to the button */
+    border: 2px dashed currentColor;
+    border-radius: inherit;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+    /* Reset any outline/border from the modal logic */
+    outline: none;
+}
+
+/* 2. THE MODAL CONTAINER */
 .project-modal-content {
     position: relative;
     background: white;
     border-radius: 1.5rem;
     max-width: 640px;
-    width: 90%;
-    max-height: 85vh;
+    width: 95%;
+    max-height: 90vh;
     padding: 2.5rem;
     overflow-y: auto;
-    overflow-x: hidden; /* Removes bottom scrollbar */
+    overflow-x: hidden;
     
-    /* Removes right scrollbar track */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    /* 1. Make the outer border solid white (acts as a spacer) */
+    border: 12px solid white; 
+    
+    /* 2. Use the outline to draw the dashes INSIDE that spacer */
+    outline: 3px dashed #7cac88;
+    /* This negative offset pulls the dash 12px away from the edge */
+    outline-offset: -12px;
+    
+    scrollbar-width: none;
 }
 
-/* Hide scrollbar for Chrome/Safari */
+.project-modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* 3. REMOVE the old glitchy stitch from the modal */
+.project-modal-content.stitched-border::before {
+    display: none !important;
+}
+
 .project-modal-content::-webkit-scrollbar {
     display: none;
 }
