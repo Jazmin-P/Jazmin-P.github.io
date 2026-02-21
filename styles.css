@@ -67,21 +67,18 @@ body {
 
 .stitched-border {
     position: relative;
-    padding: 1px
 }
 
 .stitched-border::before {
+    
     content: '';
     position: absolute;
-    top: 12px; 
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
+    inset: -2px; 
     border: 2px dashed #16a56c; /* Pink dash */
-    border-radius: 1rem;
-    opacity: 0.4;
+    border-radius: inherit;
+    opacity: 0.3;
     pointer-events: none;
-    z-index: 10;
+    z-index: 1;
 }
 
 .crosshatch-bg {
@@ -414,23 +411,24 @@ nav a:hover {
     backdrop-filter: blur(4px);
 }
 
+/* The Modal Container - No Scrollbars */
 .project-modal-content {
     position: relative;
     background: white;
     border-radius: 1.5rem;
     max-width: 640px;
-    width: 90%; /* Better for mobile */
+    width: 90%;
     max-height: 85vh;
-    padding: 2rem; /* This creates the space for the stitches */
+    padding: 2.5rem;
     overflow-y: auto;
-    overflow-x: hidden; /* Stops that bottom scrollbar */
+    overflow-x: hidden; /* Removes bottom scrollbar */
     
-    /* Hide scrollbars for Chrome/Safari/Edge */
+    /* Removes right scrollbar track */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
 }
 
-/* This specifically hides the scrollbar track in Chrome/Safari */
+/* Hide scrollbar for Chrome/Safari */
 .project-modal-content::-webkit-scrollbar {
     display: none;
 }
