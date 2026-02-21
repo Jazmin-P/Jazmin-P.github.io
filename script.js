@@ -224,41 +224,70 @@ const modalGallery = projectModal.querySelector('.project-modal-gallery');
 const modalCodeLink = projectModal.querySelector('.project-modal-code');
 const modalDemoLink = projectModal.querySelector('.project-modal-demo');
 
-function openProjectModal(projectId) {
+function openProjectModal(projectId, isVideoOnly = false) {
     const project = projectDetails[projectId];
     if (!project) return;
 
-    modalTitle.textContent = project.title;
-    modalType.textContent = project.type;
-    modalBody.innerHTML = project.longDesc || '';
-    modalCodeLink.href = project.codeUrl || '#';
+    // 1. RESET everything to visible (Standard Clean Slate)
+    modalTitle.style.display = 'block';
+    modalType.style.display = 'block';
+    modalGallery.style.display = 'grid'; 
+    modalCodeLink.style.display = 'inline-block';
+    modalDemoLink.style.display = 'inline-block';
+    modalBody.style.display = 'block';
 
-    // Video Logic
-    if (project.videoUrl) {
-        modalDemoLink.style.display = 'inline-block';
-        modalDemoLink.onclick = () => {
-            modalBody.innerHTML = `
-                <div style="width: 100%; overflow: hidden;">
-                    <video controls autoplay style="width: 100%; border-radius: 12px; margin-bottom: 1rem;">
-                        <source src="${project.videoUrl}" type="video/mp4">
-                    </video>
-                    <p>${project.longDesc}</p>
-                </div>
-            `;
-            modalDemoLink.style.display = 'none'; // Hide button once playing
-        };
-    } else {
+    if (isVideoOnly && project.videoUrl) {
+        // --- VIDEO ONLY MODE ---
+        modalTitle.style.display = 'none';
+        modalType.style.display = 'none';
+        modalGallery.style.display = 'none';
+        modalCodeLink.style.display = 'none';
         modalDemoLink.style.display = 'none';
-    }
+        
+        modalBody.innerHTML = `
+            <div style="width: 100%; padding-top: 1rem; animation: fadeInUp 0.4s ease;">
+                <video controls autoplay style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <source src="${project.videoUrl}" type="video/mp4">
+                </video>
+                <button id="closeVideoMode" class="btn btn-secondary" style="margin-top: 1rem; width: 100%;">
+                    ← Back to Project Details
+                </button>
+            </div>
+        `;
 
-    modalGallery.innerHTML = '';
-    if (project.images && project.images.length > 0) {
-        project.images.forEach(src => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = project.title + ' screenshot';
-            modalGallery.appendChild(img);
-        });
+        // This button lets them go back to the text without closing the whole modal
+        document.getElementById('closeVideoMode').onclick = () => {
+            openProjectModal(projectId, false);
+        };
+
+    } else {
+        // --- NORMAL MODE ---
+        modalTitle.textContent = project.title;
+        modalType.textContent = project.type;
+        modalBody.innerHTML = project.longDesc || '';
+        modalCodeLink.href = project.codeUrl || '#';
+
+        // Gallery logic
+        modalGallery.innerHTML = '';
+        if (project.images && project.images.length > 0) {
+            project.images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = project.title;
+                modalGallery.appendChild(img);
+            });
+        }
+
+        // Demo Button logic (Inside the modal)
+        if (project.videoUrl) {
+            modalDemoLink.style.display = 'inline-block';
+            modalDemoLink.onclick = (e) => {
+                e.preventDefault();
+                openProjectModal(projectId, true);
+            };
+        } else {
+            modalDemoLink.style.display = 'none';
+        }
     }
 
     projectModal.classList.add('is-open');
@@ -308,3 +337,15 @@ modalCodeBtn.addEventListener('click', (e) => {
     }
 });
 
+document.querySelectorAll('.project-demo-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const id = link.getAttribute('data-project-id');
+        if (id) {
+            // Pass 'true' as a second argument to signify "Video Only" mode
+            openProjectModal(id, true);
+        }
+    });
+});
