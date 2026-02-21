@@ -144,17 +144,17 @@ const projectDetails = {
         longDesc: `
             <p>I wanted to create an app that allowed the user to visualize their posters on their wall before putting holes in their wall.</p>
             <p>This came about when I moved into my current apartment. I have a giant blank wall, and it was so daunting to figure out how I
-             wanted to place my posters. I did not want to have to keep making holes just to walk back and realize I don't like it there 
+             wanted to place my posters. I did not want to have to keep making holes just to walk back and realize I don't like it there, 
              and then have to move it and make new holes. </p>
             <p>I have seen others where they trace all of their frames and posters onto butcher paper, then put that up to be able to move
              them around until they like it, but I felt like that was a waste of paper and time. Then I saw a person who used a projector to 
              map out their posters onto the wall, which I loved, but I wanted to create something that everyone could use. Not everyone has a
              projector, but almost everyone has a phone! And that started the snowball</p>
-            <p>I used Unity and the AR Foundation to create an app that would allow users to scan their posters into a gallery in the app
-             then allow them to place the posters on any wall. I want this to feel like those "See what this furniture would look like
+            <p>I used Unity and the AR Foundation to create an app that would allow users to scan their posters, which are then placed into a 
+             gallery in the app, that then allows the user to place the posters on any wall. I want this to feel like those "See what this furniture would look like
              in your space."</p>
             <p>I am still currently working on the project. Currently, I have a simple gallery working that allows the user to take a picture
-             and they can see it in their gallery and be able to view and delete it. My next step is to work on plane detection, which will
+             that they can see in their gallery and be able to view and delete it. My next step is to work on plane detection, which will
              then allow me to place the posters onto the plane (wall)</p> 
         `,
         codeUrl: 'https://github.com/Jazmin-P/WallPoster',
@@ -168,9 +168,9 @@ const projectDetails = {
             <p>I am always trying to increase my water intake and also track it, and I feel like a lot of others are similar to me.</p>
             <p>I have a bad habit of forgetting to track my water intake, or maybe I just get lazy, but I also have a problem with the 
              current solution of the app out there right now. I do not like that I have to basically just guess how many ounces I have
-             drank throughout the day without actually getting an accurate reading.</p>
+             drunk throughout the day without actually getting an accurate reading.</p>
             <p>Because of this, I decided I wanted to create something that would allow you to measure how much you have drunk and 
-             automatically gets updated into an app without having to open my phone and manually guesstimate how many ounces of water
+             automatically get updated into an app without having to open my phone and manually guesstimate how many ounces of water
              I have drank throught the day. </p>
             <p>I have used an ESP32 and an HX711 load cell to be able to weigh a water bottle before and after drinking water. I then 
              created an app that communicates with the ESP32 to be able to record your water intake.</p>
@@ -183,7 +183,7 @@ const projectDetails = {
              calculate your intake, no matter what container you are using. 
             <p>Currently, I have a scale and an app that calculates and records my water intake. My next step is to create the boot aspect.
              I will be learning how to make PCBs and solder. I am planning to make the boot out of tpu filament so that there is some
-             give to be able to go around different sized water bottles.</p>
+             give to be able to go around different-sized water bottles.</p>
         `,
         codeUrl: 'https://github.com/Jazmin-P/SmartCoaster',
         
@@ -294,4 +294,5 @@ document.querySelectorAll('.project-card').forEach(card => {
         const id = card.getAttribute('data-project-id');
         if (id) openProjectModal(id);
     });
+
 });
