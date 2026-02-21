@@ -296,3 +296,15 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 
 });
+
+const modalCodeBtn = document.querySelector('.project-modal-code');
+
+modalCodeBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    
+    const url = modalCodeBtn.getAttribute('href');
+    if (url && url !== '#') {
+        window.open(url, '_blank');
+    }
+});
+
