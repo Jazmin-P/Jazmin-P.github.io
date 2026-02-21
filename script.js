@@ -237,7 +237,6 @@ function openProjectModal(projectId) {
     if (project.videoUrl) {
         modalDemoLink.style.display = 'inline-block';
         modalDemoLink.onclick = () => {
-            // Replace modal body with the video player
             modalBody.innerHTML = `
                 <video controls autoplay style="width: 100%; border-radius: 1rem; margin-bottom: 1rem;">
                     <source src="${project.videoUrl}" type="video/mp4">

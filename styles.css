@@ -67,16 +67,21 @@ body {
 
 .stitched-border {
     position: relative;
+    padding: 1px
 }
 
 .stitched-border::before {
     content: '';
     position: absolute;
-    inset: -2px;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
     border: 2px dashed currentColor;
     border-radius: inherit;
     opacity: 0.3;
     pointer-events: none;
+    z-index: 1;
 }
 
 .crosshatch-bg {
